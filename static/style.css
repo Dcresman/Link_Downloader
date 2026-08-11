@@ -1,0 +1,569 @@
+body {
+    background:
+        radial-gradient(
+            circle at top left,
+            #243b55,
+            transparent 45%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            #141e30,
+            transparent 45%
+        ),
+        #111;
+
+    color: white;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    min-height: 100vh;
+
+    margin: 0;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* MAIN GLASS CARD */
+
+.glass-card {
+    width: min(90%, 500px);
+
+    box-sizing: border-box;
+
+    padding: 40px;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.18);
+
+    border-radius: 20px;
+
+    backdrop-filter:
+        blur(15px);
+
+    -webkit-backdrop-filter:
+        blur(15px);
+
+    box-shadow:
+        0 8px 32px
+        rgba(0, 0, 0, 0.35),
+
+        0 0 40px
+        rgba(255, 255, 255, 0.05);
+
+    text-align: center;
+}
+
+
+/* CARD PULSE WHILE DOWNLOADING */
+
+.glass-card.downloading {
+    animation:
+        cardPulse
+        1.5s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes cardPulse {
+
+    0%,
+    100% {
+
+        box-shadow:
+            0 8px 32px
+            rgba(0, 0, 0, 0.35),
+
+            0 0 40px
+            rgba(255, 255, 255, 0.05);
+    }
+
+
+    50% {
+
+        box-shadow:
+            0 8px 32px
+            rgba(0, 0, 0, 0.35),
+
+            0 0 65px
+            rgba(120, 220, 255, 0.15);
+    }
+
+}
+
+
+/* TITLE */
+
+h1 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+
+/* DESCRIPTION */
+
+.description {
+    color:
+        rgba(255, 255, 255, 0.7);
+
+    margin-bottom: 30px;
+}
+
+
+/* FORM */
+
+form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+
+/* INPUTS */
+
+input,
+select {
+    width: 100%;
+
+    padding: 14px;
+
+    box-sizing: border-box;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.15);
+
+    border-radius: 12px;
+
+    background:
+        rgba(255, 255, 255, 0.12);
+
+    color: white;
+
+    font-size: 16px;
+
+    outline: none;
+
+    transition:
+        background 0.2s ease,
+        border 0.2s ease;
+}
+
+
+input::placeholder {
+    color:
+        rgba(255, 255, 255, 0.5);
+}
+
+
+input:focus,
+select:focus {
+
+    background:
+        rgba(255, 255, 255, 0.18);
+
+    border-color:
+        rgba(255, 255, 255, 0.5);
+}
+
+
+select option {
+    background: #222;
+
+    color: white;
+}
+
+
+/* DOWNLOAD BUTTON */
+
+button {
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: white;
+
+    color: #111;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+button:hover:not(:disabled) {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(0, 0, 0, 0.3);
+
+    background: #f0f0f0;
+}
+
+
+button:active:not(:disabled) {
+    transform:
+        translateY(0);
+}
+
+
+button:disabled {
+    cursor: wait;
+
+    opacity: 0.7;
+}
+
+
+/* ===================================== */
+/* IRON MAN HELMET LOADER                */
+/* ===================================== */
+
+.helmet-loader {
+    display: none;
+
+    margin-top: 25px;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 6px;
+}
+
+
+/* WHOLE HELMET */
+
+.ironman-helmet {
+    width: 170px;
+
+    height: 190px;
+
+    overflow: visible;
+
+    filter:
+        drop-shadow(
+            0 10px 18px
+            rgba(0, 0, 0, 0.45)
+        );
+
+    animation:
+        helmetFloat
+        2.2s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes helmetFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
+
+
+    50% {
+        transform:
+            translateY(-4px);
+    }
+
+}
+
+
+/* RED OUTER HELMET */
+
+.helmet-shell {
+
+    fill:
+        url("#shell-red");
+
+    stroke:
+        #d4932f;
+
+    stroke-width: 3;
+
+    stroke-linejoin: round;
+}
+
+
+/* SIDE ARMOR */
+
+.helmet-side {
+
+    fill:
+        #550909;
+
+    stroke:
+        #aa6426;
+
+    stroke-width: 2;
+
+    opacity: 0.95;
+}
+
+
+/* DARK AREA UNDER FACEPLATE */
+
+.helmet-inner {
+
+    fill:
+        #090c10;
+
+    stroke:
+        #343b45;
+
+    stroke-width: 2;
+
+    opacity: 0;
+
+    animation:
+        innerReveal
+        2.4s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes innerReveal {
+
+    0%,
+    28% {
+
+        opacity: 0;
+    }
+
+
+    42%,
+    72% {
+
+        opacity: 1;
+    }
+
+
+    88%,
+    100% {
+
+        opacity: 0;
+    }
+
+}
+
+
+/* FACEPLATE + EYES MOVE TOGETHER */
+
+.faceplate-group {
+
+    transform-box:
+        fill-box;
+
+    transform-origin:
+        center top;
+
+    animation:
+        faceplateOpen
+        2.4s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes faceplateOpen {
+
+    0%,
+    28% {
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+
+    42%,
+    72% {
+
+        transform:
+            translateY(-52px)
+            scale(0.9);
+    }
+
+
+    88%,
+    100% {
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* GOLD FACEPLATE */
+
+.helmet-faceplate {
+
+    fill:
+        url("#face-gold");
+
+    stroke:
+        #ffe18a;
+
+    stroke-width: 3;
+
+    stroke-linejoin: round;
+
+    filter:
+        drop-shadow(
+            0 3px 4px
+            rgba(0, 0, 0, 0.4)
+        );
+}
+
+
+/* FOREHEAD DETAIL */
+
+.faceplate-detail {
+
+    fill:
+        rgba(120, 55, 10, 0.45);
+
+    stroke:
+        rgba(255, 225, 140, 0.5);
+
+    stroke-width: 1.5;
+}
+
+
+/* FACEPLATE PANEL LINE */
+
+.faceplate-line {
+
+    fill: none;
+
+    stroke:
+        rgba(85, 45, 10, 0.75);
+
+    stroke-width: 3;
+
+    stroke-linecap: round;
+}
+
+
+/* GLOWING EYES */
+
+.helmet-eye {
+
+    fill:
+        #c8fbff;
+
+    stroke:
+        #ffffff;
+
+    stroke-width: 1;
+
+    filter:
+        drop-shadow(
+            0 0 4px
+            #c8fbff
+        )
+        drop-shadow(
+            0 0 10px
+            #67eaff
+        );
+
+    animation:
+        eyePulse
+        0.9s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes eyePulse {
+
+    0%,
+    100% {
+
+        opacity: 0.7;
+    }
+
+
+    50% {
+
+        opacity: 1;
+
+        filter:
+            drop-shadow(
+                0 0 6px
+                #ffffff
+            )
+            drop-shadow(
+                0 0 16px
+                #67eaff
+            );
+    }
+
+}
+
+
+/* STATUS TEXT */
+
+.helmet-status {
+
+    margin:
+        4px 0 0;
+
+    color:
+        rgba(255, 255, 255, 0.8);
+
+    font-size: 14px;
+
+    letter-spacing: 0.4px;
+}
+
+
+/* SMALL SCREEN SUPPORT */
+
+@media (max-width: 600px) {
+
+    .glass-card {
+        width: 92%;
+
+        padding: 25px;
+    }
+
+
+    .ironman-helmet {
+        width: 145px;
+
+        height: 165px;
+    }
+
+}
