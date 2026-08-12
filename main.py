@@ -170,6 +170,14 @@ def download_video(
 
         "socket_timeout": 60,
 
+        "extractor_args": {
+            "youtube": {
+                "player_client": [
+                    "mweb"
+                ]
+            }
+        },
+
         "retries": 3,
 
         "fragment_retries": 3,
