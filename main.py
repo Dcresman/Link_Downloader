@@ -170,6 +170,8 @@ def download_video(
 
         "socket_timeout": 60,
 
+        "verbose": True,
+
         "extractor_args": {
             "youtube": {
                 "player_client": [
