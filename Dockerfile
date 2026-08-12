@@ -12,10 +12,18 @@ RUN apt-get update \
         curl \
         ca-certificates \
         unzip \
+        git \
     && rm -rf /var/lib/apt/lists/*
 
 RUN curl -fsSL https://deno.land/install.sh \
     | sh -s -- -y
+
+# Install the BgUtils PO Token provider
+RUN git clone \
+    https://github.com/Brainicism/bgutil-ytdlp-pot-provider.git \
+    /root/bgutil-ytdlp-pot-provider \
+    && cd /root/bgutil-ytdlp-pot-provider/server \
+    && deno install --allow-scripts=npm:canvas --frozen
 
 WORKDIR /app
 

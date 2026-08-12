@@ -2,3 +2,4 @@ Flask
 Flask-Limiter
 gunicorn==23.0.0
 yt-dlp[default]
+bgutil-ytdlp-pot-provider
