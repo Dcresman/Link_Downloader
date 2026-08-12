@@ -18,10 +18,12 @@ RUN apt-get update \
 RUN curl -fsSL https://deno.land/install.sh \
     | sh -s -- -y
 
-# Install the BgUtils PO Token provider
+# Install the matching BgUtils PO Token provider.
 RUN git clone \
-    https://github.com/Brainicism/bgutil-ytdlp-pot-provider.git \
-    /root/bgutil-ytdlp-pot-provider \
+        --single-branch \
+        --branch 1.3.1 \
+        https://github.com/Brainicism/bgutil-ytdlp-pot-provider.git \
+        /root/bgutil-ytdlp-pot-provider \
     && cd /root/bgutil-ytdlp-pot-provider/server \
     && deno install --allow-scripts=npm:canvas --frozen
 
@@ -39,4 +41,6 @@ RUN mkdir -p /app/downloads
 
 EXPOSE 10000
 
-CMD ["sh", "-c", "gunicorn --workers 1 --threads 2 --timeout 600 --bind 0.0.0.0:${PORT:-10000} app:app"]
+# Start the BgUtils HTTP PO-token provider on its default
+# localhost port 4416, then start the Flask app with Gunicorn.
+CMD ["sh", "-c", "cd /root/bgutil-ytdlp-pot-provider/server/node_modules && deno run --allow-env --allow-net --allow-ffi=. --allow-read=. ../src/main.ts & sleep 2 && cd /app && exec gunicorn --workers 1 --threads 2 --timeout 600 --bind 0.0.0.0:${PORT:-10000} app:app"]
